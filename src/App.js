@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useContext} from 'react';
+import Navbar from "./components/Navbar";
+import {Route, Switch} from "react-router-dom";
+import Lists from "./views/Lists";
+import Add from "./views/Add";
+import Login from "./views/Login";
+import {ErrorContext} from "./hoc/Error";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const errObj = useContext(ErrorContext);
+    return (
+        <>
+            <Navbar/>
+            
+            <div className="container">
+                {errObj.error
+                    ? (
+                        <div className="alert alert-danger d-flex justify-content-center" role="alert">
+                            {errObj.error.message}
+                        </div>
+                    )
+                    : null
+                }
+                <Switch>
+                    <Route path="/login">
+                        <Login/>
+                    </Route>
+                    <Route path="/add">
+                        <Add/>
+                    </Route>
+                    <Route path="/" exact>
+                        <Lists/>
+                    </Route>
+                </Switch>
+            </div>
+        </>
+    );
 }
 
 export default App;
