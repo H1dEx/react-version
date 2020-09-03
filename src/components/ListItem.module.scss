@@ -1,0 +1,26 @@
+.notimportant {
+    transition: 0.2s all ease-in;
+
+    &:hover {
+        background-color: #f3f3ef !important;
+    }
+}
+
+.important {
+    background-color: #eaf5bd !important;
+    transition: 0.2s all ease-in;
+
+    &:hover {
+
+        background-color: #dfe8a6 !important;
+    }
+}
+
+.noOutline {
+    &:focus {
+        outline: 0 !important;
+    }
+    :focus {
+        outline: 0 !important;
+    }
+}

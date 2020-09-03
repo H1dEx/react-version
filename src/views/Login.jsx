@@ -1,30 +1,27 @@
-import React, {Component} from 'react';
-import styles from './Views.module.scss';
+import React from 'react';
 
-class Login extends Component {
-    render() {
-        return (
-            <div className={"list-group-item list-group-item-light mt-5 col-8 offset-2 " + styles.fontColor}>
-                <h1>Login</h1>
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="email">Email address:</label>
-                        <input type="email" className="form-control" id="email"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="pwd">Password:</label>
-                        <input type="password" className="form-control" id="pwd"/>
-                    </div>
-                    <div className="form-group form-check">
-                        <label className="form-check-label">
-                            <input className="form-check-input" type="checkbox"/> Remember me
-                        </label>
-                    </div>
-                    <button type="submit" className="btn btn-dark">Submit</button>
-                </form>
-            </div>
-        );
-    }
-}
-
-export default Login;
+export function Login(props) {
+    return (
+        <div className="list-group">
+            
+            <form className="list-group-item">
+                <div className="form-group ">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           placeholder="Enter email"/>
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                </div>
+                <div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" className="btn btn-secondary mt-2">Login</button>
+            </form>
+        </div>
+    );
+};

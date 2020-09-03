@@ -1,40 +1,24 @@
-import React, {useContext} from 'react';
-import Navbar from "./components/Navbar";
+import React from 'react';
+import {Navbar} from "./components/Navbar.jsx";
+import {Lists} from "./views/Lists";
+import {Login} from "./views/Login";
+import {Newlist} from "./views/Newlist";
 import {Route, Switch} from "react-router-dom";
-import Lists from "./views/Lists";
-import Add from "./views/Add";
-import Login from "./views/Login";
-import {ErrorContext} from "./hoc/Error";
 
 function App() {
-    const errObj = useContext(ErrorContext);
     return (
-        <>
+        <div>
             <Navbar/>
-            
-            <div className="container">
-                {errObj.error
-                    ? (
-                        <div className="alert alert-danger d-flex justify-content-center" role="alert">
-                            {errObj.error.message}
-                        </div>
-                    )
-                    : null
-                }
+            <div className="container pt-5">
                 <Switch>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
-                    <Route path="/add">
-                        <Add/>
-                    </Route>
-                    <Route path="/" exact>
-                        <Lists/>
-                    </Route>
+                    <Route path="/login"><Login/></Route>
+                    <Route path="/lists" exact><Lists/></Route>
+                    <Route path="/add"><Newlist/></Route>
                 </Switch>
             </div>
-        </>
-    );
+        </div>
+    )
+        ;
 }
 
 export default App;

@@ -1,39 +1,26 @@
-import React, {useEffect, useReducer} from 'react';
-import styles from "./Views.module.scss";
-import listsReducer from "../reducers/lists-reducer";
-import {getLists} from "../actions/lists-action";
+import React, {useContext} from 'react';
+import {ListItem} from "../components/ListItem";
+import {StoreContext} from "../store/store";
+import {deletePost, toggleFinished, toggleImportant} from "../store/actions";
 
-export default function Lists(props) {
-    
-    const [lists, dispatch] = useReducer(listsReducer, [])
-    
-    useEffect(() => {
-        dispatch(getLists())
-    }, [])
+export function Lists(props) {
+    const {state, dispatch} = useContext(StoreContext);
     
     return (
-        <div className={"list-group-item list-group-item-light mt-5 col " + styles.fontColor}>
-            <h1>Header</h1>
-            <ul className="list-group">
-                {lists.map(list => (
-                        <li key={list.id} className={list.is_important ? 'list-group-item d-flex ' + styles.is_important : 'list-group-item d-flex'}>
-                            <button type="button" className="btn"><span
-                                className={(list.is_important) ? "icon-star-full active" : "icon-star-full"}/></button>
-                            <div>
-                                <b>{list.title}</b>
-                                <br/>
-                                {list.text}
-                            </div>
-                            <div className="form-check ml-auto d-flex align-items-center">
-                                <label className="form-check-label">
-                                    <input type="checkbox" className="form-check-input" checked={list.is_finished}/>Finished
-                                </label>
-                            </div>
-                            <button type="button" className="btn"><span className="icon-bin"/></button>
-                        </li>
-                    )
-                )}
-            </ul>
+        <div className="list-group">
+            {
+                state.posts.map(el => (
+                    <ListItem
+                        key={el.id}
+                        deleteHandler={() => dispatch(deletePost(el.id))}
+                        importantHandler={() => dispatch(toggleImportant(el.id))}
+                        finishHandler={() => dispatch(toggleFinished(el.id))}
+                        isImportant={el.important}
+                        isFinished={el.finished}
+                        title={el.title}
+                    />))
+            }
+        
         </div>
     );
 };

@@ -1,0 +1,5 @@
+export const DELETE_POST = 'DELETE-POST'
+export const TOGGLE_IMPORTANT = 'TOGGLE-IMPORTANT'
+export const TOGGLE_FINISHED = 'TOGGLE-FINISHED'
+export const ADD_POST = 'ADD-POST'
+export const SET_STATE = 'SET-STATE'
