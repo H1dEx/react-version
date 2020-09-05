@@ -5,7 +5,7 @@ import {deletePost, toggleFinished, toggleImportant} from "../store/actions";
 
 export function Lists(props) {
     const {state, dispatch} = useContext(StoreContext);
-    
+    console.log(state)
     return (
         <div className="list-group">
             {

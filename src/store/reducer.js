@@ -3,7 +3,7 @@ import {ADD_POST, DELETE_POST, SET_STATE, TOGGLE_FINISHED, TOGGLE_IMPORTANT} fro
 export const reducer = (state, action) => {
     switch (action.type) {
         case SET_STATE: {
-            return {...action.payload}
+            return {posts: action.payload}
         }
         case DELETE_POST: {
             return {...state, posts: state.posts.filter(el => el.id !== action.id), count: state.count - 1}
